@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PieChart from '../components/PieChart';
 import { AppProvider } from '../components/AppContext';
+import FinalValue from '../components/FinalValue';
 
 const WheelPage = () => {
   const [questionIDs, setQuestionIDs] = useState([]);
@@ -19,6 +20,7 @@ const WheelPage = () => {
       <AppProvider> 
         <h1 className="title">Что? Где? Когда?</h1>
         <PieChart nums={questionIDs} />
+        <FinalValue />
       </AppProvider>
     </div>
   ) 

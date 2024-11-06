@@ -129,4 +129,17 @@
   background-color: #3e3e3e;
   clip-path: polygon(0% 50%, 35% 100%, 100% 50%, 35% 0%);
 }
-  
+
+.final-value {
+  font-size: 1.2rem;
+  color: #3e3e3e;
+  margin-top: 1rem;
+}
+
+.final-value__link {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #f70f18;
+  padding: 0.75rem 2.5rem;
+  border-radius: 2rem;
+}

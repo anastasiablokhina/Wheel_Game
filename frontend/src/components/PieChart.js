@@ -1,19 +1,22 @@
 import React, { useContext, useLayoutEffect, useRef, useState } from 'react'
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { pieColors } from '../utils'
+import { pieColors, createPieSegments, valueGenerator } from '../utils'
 import { AppContext } from './AppContext';
 
 const PieChart = ({ nums }) => {
   const wheelRef = useRef(null);
   const [myChart, setMyChart] = useState(null);
-  const { spinning, setSpinning } = useContext(AppContext);
+  const { spinning, setSpinning, setValue } = useContext(AppContext);
+  const [rotationValues, setRotationValues] = useState([]);
 
   useLayoutEffect(() => {
     if (nums.length > 0  && wheelRef.current) {
       const colors = pieColors(nums);
       const backgroundColors = colors.map(color => color.baseColor);
       const textColors = colors.map(color => color.textColor);
+      const rotationValues = createPieSegments(nums);
+      setRotationValues(rotationValues);
 
       const myChart = new Chart(wheelRef.current, {
         plugins: [ChartDataLabels],
@@ -69,6 +72,7 @@ const PieChart = ({ nums }) => {
       easing: 'easeOutCirc',
       onComplete: () => {
         setSpinning(false)
+        setValue(valueGenerator(randomDegree, rotationValues))
       },
     };
     myChart.options.rotation = myChart.options.rotation - currentRotation + totalRotation;
