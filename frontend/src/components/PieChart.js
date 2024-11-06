@@ -1,11 +1,13 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useContext, useLayoutEffect, useRef, useState } from 'react'
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { pieColors } from '../utils'
+import { AppContext } from './AppContext';
 
 const PieChart = ({ nums }) => {
   const wheelRef = useRef(null);
   const [myChart, setMyChart] = useState(null);
+  const { spinning, setSpinning } = useContext(AppContext);
 
   useLayoutEffect(() => {
     if (nums.length > 0  && wheelRef.current) {
@@ -56,9 +58,28 @@ const PieChart = ({ nums }) => {
     }
   },[nums])
 
+  const handleSpin = () => {
+    setSpinning(true)
+    let currentRotation = myChart.options.rotation % 360;
+    let randomDegree = Math.floor(Math.random() *(360 - 0 + 1) + 0);
+    let totalRotation = 360 * (39 - nums.length) + randomDegree;
+    
+    myChart.options.animation = {
+      duration: 43000,
+      easing: 'easeOutCirc',
+      onComplete: () => {
+        setSpinning(false)
+      },
+    };
+    myChart.options.rotation = myChart.options.rotation - currentRotation + totalRotation;
+    myChart.update();    
+  }
+
   return (
     <div className="wheel__container">
       <canvas ref={wheelRef} /> 
+      <button className="wheel__spin" onClick={handleSpin} disabled={spinning}></button>
+      <span className="wheel__arrow"></span>
     </div>
   )
 }

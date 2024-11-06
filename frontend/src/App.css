@@ -95,3 +95,38 @@
   width: calc(100% - 2rem);
   height: calc(100% - 2rem);
 }
+
+.wheel__spin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0;
+  background-color: #3e3e3e;
+  z-index: 5;
+}
+
+.wheel__spin::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1.5rem solid #ffffff;
+  border-radius: 50%;
+}
+
+.wheel__arrow {
+  position: absolute;
+  z-index: 6;
+  width: 3rem;
+  height: 2rem;
+  transform: translateX(3.5rem);
+  background-color: #3e3e3e;
+  clip-path: polygon(0% 50%, 35% 100%, 100% 50%, 35% 0%);
+}
+  
