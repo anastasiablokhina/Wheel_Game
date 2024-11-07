@@ -9,7 +9,7 @@ const FinalValue = () => {
       {spinning ? (
         <p>КО-ЛЕ-СО</p>
       ) : value !== null ? (
-        <Link className="final-value__link">Вопрос {value}</Link>
+        <Link className="final-value__link" to={`/${value}`}>Вопрос {value}</Link>
       ) : (
         <p>Крути колесо блин</p>
       )}
