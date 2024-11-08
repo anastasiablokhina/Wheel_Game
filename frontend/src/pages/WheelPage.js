@@ -5,6 +5,8 @@ import FinalValue from '../components/FinalValue';
 
 const WheelPage = () => {
   const [questionIDs, setQuestionIDs] = useState([]);
+  const [seenQuestionIDs, setSeenQuestionIDs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchQuestionIDs = async () => {
@@ -15,14 +17,32 @@ const WheelPage = () => {
     fetchQuestionIDs();
   }, []);
 
+  useEffect(() => {
+    const fetchSeenQuestionIDs = async () => {
+      const response = await fetch('/api/questions/seen');
+      const data = await response.json();
+      setSeenQuestionIDs(data);
+      setIsLoading(false);
+    };
+    fetchSeenQuestionIDs();
+  }, []);
+
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <div className="wheel">
-      <AppProvider> 
-        <h1 className="title">Что? Где? Когда?</h1>
-        <PieChart nums={questionIDs} />
-        <FinalValue />
-      </AppProvider>
-    </div>
+      {questionIDs.length > 0 ? (
+        <AppProvider initialSeenQuestionIDs={seenQuestionIDs}> 
+          <h1 className="title">Что? Где? Когда?</h1>
+          <PieChart nums={questionIDs} />
+          <FinalValue />
+        </AppProvider>
+      ) : (
+        <h1 className="title">Конец</h1>
+      )}
+      </div>
   ) 
 }
 
