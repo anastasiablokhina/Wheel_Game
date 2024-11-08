@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PieChart from '../components/PieChart';
 import { AppProvider } from '../components/AppContext';
 import FinalValue from '../components/FinalValue';
+import Pause from '../components/Pause';
 
 const WheelPage = () => {
   const [questionIDs, setQuestionIDs] = useState([]);
@@ -33,6 +34,7 @@ const WheelPage = () => {
 
   return (
     <div className="wheel">
+      <Pause />
       {questionIDs.length > 0 ? (
         <AppProvider initialSeenQuestionIDs={seenQuestionIDs}> 
           <h1 className="title">Что? Где? Когда?</h1>
