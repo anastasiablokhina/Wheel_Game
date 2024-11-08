@@ -7,6 +7,7 @@ const QuestionPage = () => {
   const { id: questionId } = useParams();
   const [question, setQuestion] = useState(null);
   const history = useNavigate();
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     const getQuestion = async () => {
@@ -32,18 +33,22 @@ const QuestionPage = () => {
     history('/')
   }
 
+  const handleShowContent = () => {
+    setShowContent(true);
+  };
+
   return (
     <div className="page">
-      {question?.category &&
-        <QuestionCategory category={question.category} />
+      {question?.category && !showContent &&
+        <QuestionCategory category={question.category} onShowContent={handleShowContent} />
       }
-      {!question?.category && 
+      {(!question?.category || showContent) && (
         <QuestionContent
           questionId={questionId}
           question={question}
           handleSubmit={handleSubmit}
         />
-      }
+      )}
     </div>
   )
 }

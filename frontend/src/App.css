@@ -345,3 +345,16 @@
     transform-style: preserve-3d;
   }
 }
+
+.category__next {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #fff;
+  color: #ffffff;
+  background-color: #f70f18;
+  padding: 0.75rem 2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  z-index: 1;
+}

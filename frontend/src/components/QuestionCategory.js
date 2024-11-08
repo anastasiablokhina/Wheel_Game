@@ -4,7 +4,7 @@ import handoutIcon from '../assets/images/handout.png';
 import blitzIcon from '../assets/images/blitz.png';
 import superblitzIcon from '../assets/images/superblitz.png';
 
-const QuestionCategory = ( { category }) => {
+const QuestionCategory = ( { category, onShowContent }) => {
   const transcription = {
     "blackbox" : "Чёрный ящик",
     "handout" : "Вопрос с раздаткой",
@@ -23,6 +23,7 @@ const QuestionCategory = ( { category }) => {
     <div className="category">
       <h2 className="category__title">{transcription[category]}</h2>
       <img className="category__image" src={image[category]} id={category} alt="" />
+      <button className="category__next" onClick={onShowContent}>Перейти к вопросу</button>
     </div>
   )
 }
