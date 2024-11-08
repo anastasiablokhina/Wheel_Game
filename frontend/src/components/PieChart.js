@@ -16,6 +16,9 @@ const PieChart = ({ nums }) => {
 
   useLayoutEffect(() => {
     if (nums.length > 0  && wheelRef.current) {
+      const canvas = wheelRef.current;
+      canvas.width = 300;
+      canvas.height = 300;
       const colors = pieColors(nums);
       const backgroundColors = colors.map(color => color.baseColor);
       const textColors = colors.map(color => color.textColor);
