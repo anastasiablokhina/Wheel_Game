@@ -8,6 +8,7 @@ const QuestionPage = () => {
   const [question, setQuestion] = useState(null);
   const history = useNavigate();
   const [showContent, setShowContent] = useState(false);
+  const excludedCategories = ['warm-up', 'bonus', 'extra'];
 
   useEffect(() => {
     const getQuestion = async () => {
@@ -39,10 +40,10 @@ const QuestionPage = () => {
 
   return (
     <div className="page">
-      {question?.category && !showContent &&
+      {question?.category && !showContent && !excludedCategories.includes(question.category) &&
         <QuestionCategory category={question.category} onShowContent={handleShowContent} />
       }
-      {(!question?.category || showContent) && (
+      {(!question?.category || showContent || excludedCategories.includes(question.category)) && (
         <QuestionContent
           questionId={questionId}
           question={question}
