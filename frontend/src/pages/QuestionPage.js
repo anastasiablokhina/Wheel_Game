@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from  'react-router-dom'
 import QuestionContent from '../components/QuestionContent';
+import QuestionCategory from '../components/QuestionCategory';
 
 const QuestionPage = () => {
   const { id: questionId } = useParams();
@@ -33,6 +34,9 @@ const QuestionPage = () => {
 
   return (
     <div className="page">
+      {question?.category &&
+        <QuestionCategory category={question.category} />
+      }
       {!question?.category && 
         <QuestionContent
           questionId={questionId}
