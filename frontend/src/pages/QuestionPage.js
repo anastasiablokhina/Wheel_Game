@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from  'react-router-dom'
+import { useParams, useNavigate } from  'react-router-dom'
 import QuestionContent from '../components/QuestionContent';
 
 const QuestionPage = () => {
   const { id: questionId } = useParams();
   const [question, setQuestion] = useState(null);
+  const history = useNavigate();
 
   useEffect(() => {
     const getQuestion = async () => {
@@ -15,12 +16,28 @@ const QuestionPage = () => {
     getQuestion()
   }, [questionId])
 
+  const updateQuestion = async (updatedField) => {
+    fetch(`/api/questions/${questionId}/`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedField)
+    })
+  }
+
+  const handleSubmit = () => {
+    updateQuestion({ seen: true });
+    history('/')
+  }
+
   return (
     <div className="page">
       {!question?.category && 
         <QuestionContent
           questionId={questionId}
           question={question}
+          handleSubmit={handleSubmit}
         />
       }
     </div>

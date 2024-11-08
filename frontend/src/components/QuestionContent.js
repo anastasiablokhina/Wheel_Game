@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { ReactComponent as Cross } from '../assets/icons/cross.svg'
 
-const QuestionContent = ( { questionId, question } ) => {
+const QuestionContent = ( { questionId, question, handleSubmit } ) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isContentVisible, setIsContentVisible] = useState(false);
   
@@ -23,6 +24,7 @@ const QuestionContent = ( { questionId, question } ) => {
       <span></span>
       <span></span>
       <div className="content">
+      <Cross style={{ position: 'absolute', alignSelf: 'end' }} onClick={handleSubmit} />
         <h1 className="content__title">Вопрос #{questionId}</h1>
         {isContentVisible && (
           <p className="content__text">{currentContent.body}</p>
