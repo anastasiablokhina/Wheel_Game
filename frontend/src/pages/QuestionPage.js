@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from  'react-router-dom'
 import QuestionContent from '../components/QuestionContent';
 import QuestionCategory from '../components/QuestionCategory';
+import AudioPlayer from '../components/AudioPlayer';
 
 const QuestionPage = () => {
   const { id: questionId } = useParams();
@@ -50,6 +51,7 @@ const QuestionPage = () => {
           handleSubmit={handleSubmit}
         />
       )}
+      <AudioPlayer/>
     </div>
   )
 }
