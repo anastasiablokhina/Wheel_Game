@@ -358,3 +358,10 @@
   cursor: pointer;
   z-index: 1;
 }
+
+.next {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+}

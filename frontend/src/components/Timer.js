@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Toggle from './Toggle';
 
-const Timer = ( { initialTime = 60 }) => {
+const Timer = ( { initialTime = 60, blitzIsFinished = false, setBlitzFinished = false }) => {
   const [isRunning, setRunning] = useState(false);
   const [isFinished, setFinished] = useState(false);
   const [isPaused, setPaused] = useState(false);
@@ -38,6 +38,16 @@ const Timer = ( { initialTime = 60 }) => {
     }
     return () => clearInterval(intervalId);
 }, [isRunning, isPaused]);
+
+useEffect(() => {
+  if (blitzIsFinished) {
+    setBlitzFinished(false);
+    setRunning(false);
+    setFinished(false);
+    setPaused(false);
+    setSecondsRemaining(initialTime);
+  }
+}, [blitzIsFinished, setBlitzFinished, initialTime])
 
   return (
     <div className="timer">
