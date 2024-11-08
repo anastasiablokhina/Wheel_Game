@@ -235,3 +235,46 @@
     opacity: 1;
   }
 }
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  justify-content: center;
+}
+
+.timer__container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.timer__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 0.5rem 2.5rem;
+  background-color: #f70f18;
+  border-radius: 3rem;
+  font-size: 0.8rem;
+}
+
+.timer__btn--finished {
+  background-color: #db9093;
+}
+
+.timer__value {
+  min-width: 4.25rem;
+  font-size: 2.5rem;
+}
+
+.timer__toggle {
+  max-height: 2rem;
+  cursor: pointer;
+}

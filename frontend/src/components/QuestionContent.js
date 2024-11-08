@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ReactComponent as Cross } from '../assets/icons/cross.svg'
+import Timer from '../components/Timer';
 
 const QuestionContent = ( { questionId, question, handleSubmit } ) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,11 +25,14 @@ const QuestionContent = ( { questionId, question, handleSubmit } ) => {
       <span></span>
       <span></span>
       <div className="content">
-      <Cross style={{ position: 'absolute', alignSelf: 'end' }} onClick={handleSubmit} />
+        <Cross style={{ position: 'absolute', alignSelf: 'end' }} onClick={handleSubmit} />
         <h1 className="content__title">Вопрос #{questionId}</h1>
         {isContentVisible && (
           <p className="content__text">{currentContent.body}</p>
         )}
+      </div>
+      <div className="bottom">
+        <Timer></Timer>
       </div>
     </div>
   )
